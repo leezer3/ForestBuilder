@@ -18,10 +18,21 @@ namespace ForestBuilder
         /// </summary>
         public class Area
         {
-            /// <summary>
-            /// Gets or sets the distance between the area's center line and the rail.
-            /// </summary>
-            public float Distance { get; set; }
+
+			/// <summary>
+			/// Gets or sets the area's textual name placed.
+			/// </summary>
+			public string Name { get; set; }
+
+			/// <summary>
+			/// Gets or sets the frequency at which objects are placed.
+			/// </summary>
+			public float Frequency { get; set; }
+
+			/// <summary>
+			/// Gets or sets the distance between the area's center line and the rail.
+			/// </summary>
+			public float Distance { get; set; }
 
             /// <summary>
             /// Gets or sets the offset to the area's center line in the X axis.
@@ -57,22 +68,28 @@ namespace ForestBuilder
         /// <summary>
         /// Gets or sets the point where the first object can be placed.
         /// </summary>
-        public float StartingPoint { get; set; } = 0;
-
+        public float StartingPoint { get; set; }
         /// <summary>
         /// Gets or sets the point where the last object can be placed.
         /// </summary>
-        public float EndPoint { get; set; } = 0;
-
+        public float EndPoint { get; set; }
         /// <summary>
         /// Gets or sets the amount of occurence of the objects.
         /// </summary>
-        public float Frequency { get; set; } = 0;
+        public float Frequency { get; set; }
 
         /// <summary>
         /// Gets or sets the list of the areas.
         /// </summary>
-        public List<Area> Areas { get; set; } = new List<Area>();
+        public List<Area> Areas { get; set; }
+
+	    public Generator()
+	    {
+		    StartingPoint = 0;
+		    EndPoint = 0;
+		    Frequency = 0;
+			Areas = new List<Area>();
+	    }
 
         /// <summary>
         /// Generates random placements for the objects with the currently set options.
@@ -88,26 +105,49 @@ namespace ForestBuilder
             lines.Add(";Version: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             lines.Add(";Copyright: ManagedCode\n");
 
-            //iterate through the positions
-            for (float f = StartingPoint; f < EndPoint; f += Frequency)
-            {
+			List<ObjectEntry> ObjectList = new List<ObjectEntry>();
                 //go through all the areas
                 foreach(Area area in this.Areas)
                 {
-                    //distance marker
-                    lines.Add(string.Format("{0},", (f + Dispersion(area.ZOffset)).ToString(CultureInfo.InvariantCulture)));
+					//iterate through the positions
+					for (float f = StartingPoint; f < EndPoint; f += area.Frequency)
+					{
+						ObjectList.Add(new ObjectEntry(f + Dispersion(area.ZOffset), string.Format("Track.FreeObj 0;{0};{1};{2};{3};0;0;0,",
+						RandomArrayMember(area.Indices),
+						(area.Distance + Dispersion(area.XOffset)).ToString(CultureInfo.InvariantCulture),
+						area.Height.ToString(CultureInfo.InvariantCulture),
+						RandomBetween(area.YRotationMin, area.YRotationMax).ToString(CultureInfo.InvariantCulture))));
+						
+					}
+				
 
-                    //place the object with random parameters
-                    lines.Add(string.Format("Track.FreeObj 0;{0};{1};{2};{3};0;0;0,",
-                        RandomArrayMember(area.Indices),
-                        (area.Distance + Dispersion(area.XOffset)).ToString(CultureInfo.InvariantCulture),
-                        area.Height.ToString(CultureInfo.InvariantCulture),
-                        RandomBetween(area.YRotationMin, area.YRotationMax).ToString(CultureInfo.InvariantCulture)));
-                }
             }
-
-            System.IO.File.WriteAllLines(fileName, lines);
+			//Order track positions
+			ObjectList = ObjectList.OrderBy(x => x.TrackPosition).ToList();
+			double tpos = 0;
+			//Write object list out to file
+			foreach(ObjectEntry entry in ObjectList)
+			{
+				if(entry.TrackPosition != tpos)
+				{
+					tpos = entry.TrackPosition;
+				}
+				lines.Add(entry.TrackPosition.ToString(CultureInfo.InvariantCulture) + ", " + entry.Object);
+				
+			}
+			System.IO.File.WriteAllLines(fileName, lines);
         }
+
+		internal struct ObjectEntry
+		{
+			internal double TrackPosition;
+			internal string Object;
+			internal ObjectEntry(double Pos, string Object)
+			{
+				this.TrackPosition = Pos;
+				this.Object = Object;
+			}
+		}
 
         private static Random random = new Random();
 
