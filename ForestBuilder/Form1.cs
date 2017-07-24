@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -83,7 +84,8 @@ namespace ForestBuilder
             {
                 generator.StartingPoint = float.Parse(textBox1.Text, floatStyle, invariantCulture);
                 generator.EndPoint = float.Parse(textBox2.Text, floatStyle, invariantCulture);
-                generator.Frequency = float.Parse(textBox3.Text, floatStyle, invariantCulture);
+	            float f;
+	            generator.Frequency = float.TryParse(textBox3.Text, floatStyle, invariantCulture, out f) ? f : 0;
                 generator.Areas = new List<Generator.Area>();
                 foreach (DataGridViewRow c in dataGridView1.Rows)
                 {
@@ -101,6 +103,10 @@ namespace ForestBuilder
 						else
 						{
 							//A frequency of 0 will result in an infinite loop.....
+							if (generator.Frequency == 0)
+							{
+								throw new InvalidDataException("One of the main frequency and the area frequency must not be zero.");
+							}
 							area.Frequency = generator.Frequency;
 						}
 					}
