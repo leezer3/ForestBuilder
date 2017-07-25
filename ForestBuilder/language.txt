@@ -4,6 +4,7 @@
 [Language:eng]
 Name = "English"
 AppName = "ForestBuilder"
+AREA_NAME = Name
 STARTING_POINT = "Starting point"
 END_POINT = "End point"
 FREQUENCY = "Frequency"
@@ -21,11 +22,12 @@ SAVE_PROJECT_AS_A_FILE = "Save project as a file..."
 Y_ROTATION_MIN = "Y rotation min"
 Y_ROTATION_MAX = "Y rotation max"
 MALFORMED_VALUE = "Malformed value"
-MALFORMED_VALUE_MSG = "One of the fields contains malformed value."
+MALFORMED_VALUE_MSG = "One of the fields contains a malformed value."
 
 [Language:hun]
 Name = "Magyar"
 AppName = "Erdőépítő"
+AREA_NAME = "Név"
 STARTING_POINT = "Kezdőpont"
 END_POINT = "Végpont"
 FREQUENCY = "Sűrűség"

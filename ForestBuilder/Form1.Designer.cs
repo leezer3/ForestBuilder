@@ -37,13 +37,6 @@
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.areaName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Distance = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.XOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +46,13 @@
 			this.YRotationMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.YRotationMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.labelVersion = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
@@ -143,6 +143,52 @@
 			this.dataGridView1.TabIndex = 6;
 			this.dataGridView1.TabStop = false;
 			// 
+			// areaName
+			// 
+			this.areaName.HeaderText = "Name";
+			this.areaName.Name = "areaName";
+			// 
+			// Distance
+			// 
+			this.Distance.HeaderText = "Távolság";
+			this.Distance.Name = "Distance";
+			// 
+			// XOffset
+			// 
+			this.XOffset.HeaderText = "X eltérés";
+			this.XOffset.Name = "XOffset";
+			// 
+			// ZOffset
+			// 
+			this.ZOffset.HeaderText = "Z eltérés";
+			this.ZOffset.Name = "ZOffset";
+			// 
+			// Indices
+			// 
+			this.Indices.FillWeight = 250F;
+			this.Indices.HeaderText = "Indexek";
+			this.Indices.Name = "Indices";
+			// 
+			// Height
+			// 
+			this.Height.HeaderText = "Magasság";
+			this.Height.Name = "Height";
+			// 
+			// YRotationMin
+			// 
+			this.YRotationMin.HeaderText = "Y elforgatás min";
+			this.YRotationMin.Name = "YRotationMin";
+			// 
+			// YRotationMax
+			// 
+			this.YRotationMax.HeaderText = "Y elforgatás max";
+			this.YRotationMax.Name = "YRotationMax";
+			// 
+			// Frequency
+			// 
+			this.Frequency.HeaderText = "Frequency";
+			this.Frequency.Name = "Frequency";
+			// 
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -214,54 +260,9 @@
 			this.textBox3.Size = new System.Drawing.Size(142, 20);
 			this.textBox3.TabIndex = 0;
 			// 
-			// areaName
-			// 
-			this.areaName.HeaderText = "Name";
-			this.areaName.Name = "areaName";
-			// 
-			// Distance
-			// 
-			this.Distance.HeaderText = "Távolság";
-			this.Distance.Name = "Distance";
-			// 
-			// XOffset
-			// 
-			this.XOffset.HeaderText = "X eltérés";
-			this.XOffset.Name = "XOffset";
-			// 
-			// ZOffset
-			// 
-			this.ZOffset.HeaderText = "Z eltérés";
-			this.ZOffset.Name = "ZOffset";
-			// 
-			// Indices
-			// 
-			this.Indices.FillWeight = 250F;
-			this.Indices.HeaderText = "Indexek";
-			this.Indices.Name = "Indices";
-			// 
-			// Height
-			// 
-			this.Height.HeaderText = "Magasság";
-			this.Height.Name = "Height";
-			// 
-			// YRotationMin
-			// 
-			this.YRotationMin.HeaderText = "Y elforgatás min";
-			this.YRotationMin.Name = "YRotationMin";
-			// 
-			// YRotationMax
-			// 
-			this.YRotationMax.HeaderText = "Y elforgatás max";
-			this.YRotationMax.Name = "YRotationMax";
-			// 
-			// Frequency
-			// 
-			this.Frequency.HeaderText = "Frequency";
-			this.Frequency.Name = "Frequency";
-			// 
 			// labelVersion
 			// 
+			this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.labelVersion.AutoSize = true;
 			this.labelVersion.Location = new System.Drawing.Point(5, 344);
 			this.labelVersion.Name = "labelVersion";

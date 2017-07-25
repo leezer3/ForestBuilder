@@ -33,33 +33,39 @@ namespace ForestBuilder
             languages = new Dictionary<string, Language>();
             string[] lines = System.IO.File.ReadAllLines(LANGUAGE_FILE);
             string currentSection = "";
-            foreach (string line in lines)
-            {
-                string s = line.Trim();
-                if (s.Contains(';'))
-                    s = s.Substring(0, s.IndexOf(';'));
-                if (s == "")
-                    continue;
-                if (s[0] == '[')
-                {
-                    if (!s.Contains(':') || !s.Contains(']'))
-                        continue;
-                    currentSection = s.Substring(s.IndexOf(':') + 1, s.IndexOf(']') - s.IndexOf(':') - 1);
-                    languages.Add(currentSection, new Language());
-                }
-                if (s.Contains('='))
-                {
-                    string key = s.Substring(0, s.IndexOf('=') - 1).Trim();
-                    string value = s.Substring(s.IndexOf('"') + 1, s.IndexOf('"', s.IndexOf('"') + 1) - s.IndexOf('"') - 1);
-                    if (key == "CurrentCulture")
-                    {
-                        CurrentCulture = value;
-                        continue;
-                    }
-                    languages[currentSection].Words.Add(key, value);
-                }
-            }
-            if (CurrentCulture == null)
+	        try
+	        {
+		        foreach (string line in lines)
+		        {
+			        string s = line.Trim();
+			        if (s.Contains(';'))
+				        s = s.Substring(0, s.IndexOf(';'));
+			        if (s == "")
+				        continue;
+			        if (s[0] == '[')
+			        {
+				        if (!s.Contains(':') || !s.Contains(']'))
+					        continue;
+				        currentSection = s.Substring(s.IndexOf(':') + 1, s.IndexOf(']') - s.IndexOf(':') - 1);
+				        languages.Add(currentSection, new Language());
+			        }
+			        if (s.Contains('='))
+			        {
+				        string key = s.Substring(0, s.IndexOf('=') - 1).Trim();
+				        string value = s.Substring(s.IndexOf('"') + 1, s.IndexOf('"', s.IndexOf('"') + 1) - s.IndexOf('"') - 1);
+				        if (key == "CurrentCulture")
+				        {
+					        CurrentCulture = value;
+					        continue;
+				        }
+				        languages[currentSection].Words.Add(key, value);
+			        }
+		        }
+	        }
+	        catch
+	        {
+	        }
+	        if (CurrentCulture == null)
             {
                 CurrentCulture = System.Globalization.CultureInfo.CurrentCulture.ThreeLetterISOLanguageName;
             }

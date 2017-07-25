@@ -31,7 +31,8 @@ namespace ForestBuilder
             label1.Text = languageManager.CurrentLanguage.Words["STARTING_POINT"];
             label2.Text = languageManager.CurrentLanguage.Words["END_POINT"];
             label3.Text = languageManager.CurrentLanguage.Words["FREQUENCY"];
-            dataGridView1.Columns["Distance"].HeaderText = languageManager.CurrentLanguage.Words["DISTANCE"];
+	        dataGridView1.Columns["areaName"].HeaderText = languageManager.CurrentLanguage.Words["AREA_NAME"];
+			dataGridView1.Columns["Distance"].HeaderText = languageManager.CurrentLanguage.Words["DISTANCE"];
             dataGridView1.Columns["XOffset"].HeaderText = languageManager.CurrentLanguage.Words["X_OFFSET"];
             dataGridView1.Columns["ZOffset"].HeaderText = languageManager.CurrentLanguage.Words["Z_OFFSET"];
             dataGridView1.Columns["Indices"].HeaderText = languageManager.CurrentLanguage.Words["INDICES"];
