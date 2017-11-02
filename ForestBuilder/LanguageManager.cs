@@ -18,6 +18,11 @@ namespace ForestBuilder
             {
                 Words = new Dictionary<string, string>();
             }
+
+	        internal string GetTranslation(string key)
+	        {
+		        return this.Words.ContainsKey(key) ? this.Words[key] : "String missing from language file...";
+	        }
         }
         private Dictionary<string, Language> languages;
         public Language CurrentLanguage
@@ -52,6 +57,10 @@ namespace ForestBuilder
 			        if (s.Contains('='))
 			        {
 				        string key = s.Substring(0, s.IndexOf('=') - 1).Trim();
+				        if (s.IndexOf('"') == -1)
+				        {
+					        continue;
+				        }
 				        string value = s.Substring(s.IndexOf('"') + 1, s.IndexOf('"', s.IndexOf('"') + 1) - s.IndexOf('"') - 1);
 				        if (key == "CurrentCulture")
 				        {

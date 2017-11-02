@@ -4,7 +4,7 @@
 [Language:eng]
 Name = "English"
 AppName = "ForestBuilder"
-AREA_NAME = Name
+AREA_NAME = "Name"
 STARTING_POINT = "Starting point"
 END_POINT = "End point"
 FREQUENCY = "Frequency"

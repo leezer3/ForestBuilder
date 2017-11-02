@@ -26,25 +26,32 @@ namespace ForestBuilder
         }
         private void ApplyLanguage()
         {
-			labelVersion.Text = "ForestBuilder: v" + Assembly.GetEntryAssembly().GetName().Version;
-            this.Text = languageManager.CurrentLanguage.Words["AppName"];
-            label1.Text = languageManager.CurrentLanguage.Words["STARTING_POINT"];
-            label2.Text = languageManager.CurrentLanguage.Words["END_POINT"];
-            label3.Text = languageManager.CurrentLanguage.Words["FREQUENCY"];
-	        dataGridView1.Columns["areaName"].HeaderText = languageManager.CurrentLanguage.Words["AREA_NAME"];
-			dataGridView1.Columns["Distance"].HeaderText = languageManager.CurrentLanguage.Words["DISTANCE"];
-            dataGridView1.Columns["XOffset"].HeaderText = languageManager.CurrentLanguage.Words["X_OFFSET"];
-            dataGridView1.Columns["ZOffset"].HeaderText = languageManager.CurrentLanguage.Words["Z_OFFSET"];
-            dataGridView1.Columns["Indices"].HeaderText = languageManager.CurrentLanguage.Words["INDICES"];
-            dataGridView1.Columns["Height"].HeaderText = languageManager.CurrentLanguage.Words["HEIGHT"];
-            dataGridView1.Columns["YRotationMin"].HeaderText = languageManager.CurrentLanguage.Words["Y_ROTATION_MIN"];
-            dataGridView1.Columns["YRotationMax"].HeaderText = languageManager.CurrentLanguage.Words["Y_ROTATION_MAX"];
-			dataGridView1.Columns["Frequency"].HeaderText = languageManager.CurrentLanguage.Words["FREQUENCY"];
-			button1.Text = languageManager.CurrentLanguage.Words["START"];
-            button2.Text = languageManager.CurrentLanguage.Words["ADD_LAYER"];
-            button3.Text = languageManager.CurrentLanguage.Words["DELETE_LAYER"];
-            button4.Text = languageManager.CurrentLanguage.Words["SAVE_PROJECT_AS_A_FILE"];
-            button5.Text = languageManager.CurrentLanguage.Words["OPEN_PROJECT"];
+	        try
+	        {
+		        labelVersion.Text = "ForestBuilder: v" + Assembly.GetEntryAssembly().GetName().Version;
+		        this.Text = languageManager.CurrentLanguage.GetTranslation("AppName");
+		        label1.Text = languageManager.CurrentLanguage.GetTranslation("STARTING_POINT");
+		        label2.Text = languageManager.CurrentLanguage.GetTranslation("END_POINT");
+		        label3.Text = languageManager.CurrentLanguage.GetTranslation("FREQUENCY");
+		        dataGridView1.Columns["areaName"].HeaderText = languageManager.CurrentLanguage.GetTranslation("AREA_NAME");
+		        dataGridView1.Columns["Distance"].HeaderText = languageManager.CurrentLanguage.GetTranslation("DISTANCE");
+		        dataGridView1.Columns["XOffset"].HeaderText = languageManager.CurrentLanguage.GetTranslation("X_OFFSET");
+		        dataGridView1.Columns["ZOffset"].HeaderText = languageManager.CurrentLanguage.GetTranslation("Z_OFFSET");
+		        dataGridView1.Columns["Indices"].HeaderText = languageManager.CurrentLanguage.GetTranslation("INDICES");
+		        dataGridView1.Columns["Height"].HeaderText = languageManager.CurrentLanguage.GetTranslation("HEIGHT");
+		        dataGridView1.Columns["YRotationMin"].HeaderText = languageManager.CurrentLanguage.GetTranslation("Y_ROTATION_MIN");
+		        dataGridView1.Columns["YRotationMax"].HeaderText = languageManager.CurrentLanguage.GetTranslation("Y_ROTATION_MAX");
+		        dataGridView1.Columns["Frequency"].HeaderText = languageManager.CurrentLanguage.GetTranslation("FREQUENCY");
+		        button1.Text = languageManager.CurrentLanguage.GetTranslation("START");
+		        button2.Text = languageManager.CurrentLanguage.GetTranslation("ADD_LAYER");
+		        button3.Text = languageManager.CurrentLanguage.GetTranslation("DELETE_LAYER");
+		        button4.Text = languageManager.CurrentLanguage.GetTranslation("SAVE_PROJECT_AS_A_FILE");
+		        button5.Text = languageManager.CurrentLanguage.GetTranslation("OPEN_PROJECT");
+	        }
+	        catch
+	        {
+		        MessageBox.Show("Error applying languange. \n Please check that language.txt is present and un-altered.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+	        }
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -128,7 +135,7 @@ namespace ForestBuilder
             }
             catch (Exception exception)
             {
-                MessageBox.Show(languageManager.CurrentLanguage.Words["MALFORMED_VALUE_MSG"], languageManager.CurrentLanguage.Words["MALFORMED_VALUE"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(languageManager.CurrentLanguage.GetTranslation("MALFORMED_VALUE_MSG"), languageManager.CurrentLanguage.GetTranslation("MALFORMED_VALUE"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
